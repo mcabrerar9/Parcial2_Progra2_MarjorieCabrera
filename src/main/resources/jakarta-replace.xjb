@@ -1,0 +1,16 @@
+<jaxb:bindings version="2.1"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    jaxb:extensionBindingPrefixes="xjc"
+    jaxb:jaxbBindingSchemaLocation="http://java.sun.com/xml/ns/jaxb https://javaee.github.io/jaxb-v2/doc/user-guide/release-doc/Schema/extension.xsd">
+    
+    <jaxb:bindings
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        version="2.1">
+        <jaxb:globalBindings>
+            <jaxb:schemaBindings>
+                <jaxb:package name="jakarta.xml.bind.annotation"/>
+            </jaxb:schemaBindings>
+        </jaxb:globalBindings>
+    </jaxb:bindings>
+</jaxb:bindings>
