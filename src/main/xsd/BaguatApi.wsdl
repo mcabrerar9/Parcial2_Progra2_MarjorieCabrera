@@ -1,0 +1,104 @@
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:tns="http://www.banguat.gob.gt/variables/ws/"
+                  xmlns:s="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="http://www.banguat.gob.gt/variables/ws/">
+    <wsdl:documentation>Tipo de cambio en moneda extranjera</wsdl:documentation>
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://www.banguat.gob.gt/variables/ws/">
+            <s:element name="VariablesDisponibles">
+                <s:complexType/>
+            </s:element>
+            <s:element name="VariablesDisponiblesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="VariablesDisponiblesResult" type="tns:InfoVariable"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="InfoVariable">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Variables" type="tns:ArrayOfVariable"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CambioDia" type="tns:ArrayOfVar"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CambioDolar" type="tns:ArrayOfVarDolar"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="TotalItems" type="s:int"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfVariable">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Variable" nillable="true" type="tns:Variable"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Variable">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="moneda" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfVar">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Var" nillable="true" type="tns:Var"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Var">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="moneda" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="venta" type="s:float"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="compra" type="s:float"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfVarDolar">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="VarDolar" nillable="true" type="tns:VarDolar"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="VarDolar">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="referencia" type="s:float"/>
+                </s:sequence>
+            </s:complexType>
+            <!-- Define more elements as needed -->
+        </s:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="VariablesDisponiblesSoapIn">
+        <wsdl:part name="parameters" element="tns:VariablesDisponibles"/>
+    </wsdl:message>
+    <wsdl:message name="VariablesDisponiblesSoapOut">
+        <wsdl:part name="parameters" element="tns:VariablesDisponiblesResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="TipoCambioSoap">
+        <wsdl:operation name="VariablesDisponibles">
+            <wsdl:input message="tns:VariablesDisponiblesSoapIn"/>
+            <wsdl:output message="tns:VariablesDisponiblesSoapOut"/>
+        </wsdl:operation>
+        <!-- Define other operations like Variables, TipoCambioFechaInicial, etc. -->
+    </wsdl:portType>
+    
+    <wsdl:binding name="TipoCambioSoap" type="tns:TipoCambioSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="VariablesDisponibles">
+            <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/VariablesDisponibles" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="TipoCambioService">
+        <wsdl:port name="TipoCambioPort" binding="tns:TipoCambioSoap">
+            <soap:address location="http://www.banguat.gob.gt/variables/ws/TipoCambio"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

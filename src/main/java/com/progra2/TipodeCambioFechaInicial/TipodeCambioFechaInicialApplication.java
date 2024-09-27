@@ -1,4 +1,5 @@
-package com.progra2.mar.TipodeCambioFechaInicial;
+
+package com.progra2.TipodeCambioFechaInicial;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

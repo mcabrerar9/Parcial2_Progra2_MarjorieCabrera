@@ -1,4 +1,4 @@
-package com.progra2.mar.TipodeCambioFechaInicial;
+package com.progra2.TipodeCambioFechaInicial;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

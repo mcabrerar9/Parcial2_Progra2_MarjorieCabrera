@@ -1,6 +1,7 @@
-package com.progra2.mar.tipocambio.service.impl;
 
-import com.progra2.mar.tipocambio.service.TipoCambioService;
+package com.progra2.tipocambio.service.impl;
+
+import com.progra2.tipocambio.service.TipoCambioService;
 import com.progra2.TipodeCambioFechaInicial.wsdl.TipoCambioFechaInicialResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

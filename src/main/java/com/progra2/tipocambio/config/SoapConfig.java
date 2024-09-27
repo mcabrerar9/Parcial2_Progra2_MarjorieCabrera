@@ -1,5 +1,4 @@
-
-package com.progra2.mar.tipocambio.config;
+package com.progra2.tipocambio.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,11 @@ public class SoapConfig {
     @Bean
     public WebServiceTemplate webServiceTemplate() {
         WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
-        webServiceTemplate.setMessageSender(new HttpUrlConnectionMessageSender());
+        
+        // Configura el sender para enviar mensajes SOAP mediante HTTP
+        HttpUrlConnectionMessageSender messageSender = new HttpUrlConnectionMessageSender();
+        
+        webServiceTemplate.setMessageSender(messageSender);
         return webServiceTemplate;
     }
 }

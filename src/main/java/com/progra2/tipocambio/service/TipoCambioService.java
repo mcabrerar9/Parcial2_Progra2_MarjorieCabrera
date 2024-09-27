@@ -1,11 +1,10 @@
+package com.progra2.tipocambio.service;
 
-package com.progra2.mar.tipocambio.service;
-
+import com.progra2.TipodeCambioFechaInicial.wsdl.TipoCambioFechaInicial;
+import com.progra2.TipodeCambioFechaInicial.wsdl.TipoCambioFechaInicialResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import com.progra2.TipodeCambioFechaInicial.wsdl.TipoCambioFechaInicial;
-import com.progra2.TipodeCambioFechaInicial.wsdl.TipoCambioFechaInicialResponse;
 
 @Service
 public class TipoCambioService {
@@ -16,9 +15,9 @@ public class TipoCambioService {
     public TipoCambioFechaInicialResponse obtenerTipoCambio(String fechaInicial) {
         // Crear la solicitud
         TipoCambioFechaInicial request = new TipoCambioFechaInicial();
-        request.setFecha(fechaInicial);
+        request.setFechainit(fechaInicial); // Verifica que el nombre del campo sea correcto según el WSDL.
 
-        // Llamar al servicio SOAP
+        // Llamar al servicio SOAP y recibir la respuesta
         TipoCambioFechaInicialResponse response = 
             (TipoCambioFechaInicialResponse) webServiceTemplate.marshalSendAndReceive(
                 "https://www.banguat.gob.gt/variables/ws/TipoCambio.asmx", request);
